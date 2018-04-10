@@ -14,6 +14,9 @@ gulp.task('copy', () => mergeStream(
   gulp.src('src/data/*.json').pipe(gulp.dest('build/data/')),
 ));
 
+gulp.task('copy-html', () =>
+  mergeStream(gulp.src('*.html').pipe(gulp.dest('build/'))));
+
 gulp.task('compress', (cb) => {
   pump(
     [gulp.src('src/js/*.js'),
@@ -36,9 +39,10 @@ gulp.task('sass', () =>
     .pipe(gulp.dest('build/styles')));
 
 // Watch
-gulp.task('watch', ['sass', 'compress', 'copy'], () => {
+gulp.task('watch', ['sass', 'compress', 'copy-html', 'copy'], () => {
   gulp.watch(['src/scss/*.scss'], ['sass']);
   gulp.watch(['src/scripts/*.js'], ['compress']);
+  gulp.watch(['*.html'], ['copy-html']);
   gulp.watch(['src/images/**/*', 'src/data/*.json'], ['copy']);
 });
 
