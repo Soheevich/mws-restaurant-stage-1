@@ -1,13 +1,12 @@
-@import 'variables';
-@import 'functions';
+@import 'document';
+@import 'navigation';
+@import 'map';
+@import 'restaurant-filtering';
+@import 'restaurant-listing';
+@import 'restaurant-details';
 
-*{
-  margin:0;
-  padding:0;
-}
-
-html, body {
-  width: 100vw;
-  max-width: 100%;
-  max-height: 100%;
-}
+  @media (min-width: 640px) {
+    bottom: 30px;
+    left: 30px;
+    right: auto;
+  }

@@ -9,12 +9,10 @@ const babel = require('gulp-babel');
 const mergeStream = require('merge-stream');
 
 
-gulp.task('copy', () => {
-  return mergeStream(
-    gulp.src('src/images/**/*').pipe(gulp.dest('build/images/')),
-    gulp.src('src/data/*.json').pipe(gulp.dest('build/data/')),
-  );
-});
+gulp.task('copy', () => mergeStream(
+  gulp.src('src/images/**/*').pipe(gulp.dest('build/images/')),
+  gulp.src('src/data/*.json').pipe(gulp.dest('build/data/')),
+));
 
 gulp.task('compress', (cb) => {
   pump(
