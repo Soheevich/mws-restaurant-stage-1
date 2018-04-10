@@ -6,7 +6,15 @@ const rename = require('gulp-rename');
 const pump = require('pump');
 // const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
+const mergeStream = require('merge-stream');
 
+
+gulp.task('copy', () => {
+  return mergeStream(
+    gulp.src('src/images/**/*').pipe(gulp.dest('build/images/')),
+    gulp.src('src/data/*.json').pipe(gulp.dest('build/data/')),
+  );
+});
 
 gulp.task('compress', (cb) => {
   pump(
@@ -24,16 +32,17 @@ gulp.task('sass', () =>
   gulp
     .src(['src/scss/*.scss'])
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/styles')));
 
 // Watch
-gulp.task('watch-css-js', ['sass', 'compress'], () => {
+gulp.task('watch', ['sass', 'compress', 'copy'], () => {
   gulp.watch(['src/scss/*.scss'], ['sass']);
   gulp.watch(['src/scripts/*.js'], ['compress']);
+  gulp.watch(['src/images/**/*', 'src/data/*.json'], ['copy']);
 });
 
 // Default
-gulp.task('default', ['watch-css-js']);
+gulp.task('default', ['watch']);
