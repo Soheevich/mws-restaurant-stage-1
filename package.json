@@ -1,0 +1,35 @@
+{
+  "name": "restaurant-reviews",
+  "version": "1.0.0",
+  "description": "Learning project for Udacity",
+  "main": "app.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soheevich/mws-restaurant-stage-1.git"
+  },
+  "author": "Andrei Filyaev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Soheevich/mws-restaurant-stage-1/issues"
+  },
+  "homepage": "https://github.com/Soheevich/mws-restaurant-stage-1#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "pump": "^3.0.0"
+  },
+  "dependencies": {
+    "eslint": "^4.19.1"
+  }
+}
