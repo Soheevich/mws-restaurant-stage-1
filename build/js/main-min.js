@@ -123,9 +123,22 @@ const createRestaurantHTML = (restaurant) => {
   const div = document.createElement('div');
   div.className = 'restaurants-element';
 
+  const picture = document.createElement('picture');
+
+  const source = document.createElement('source');
+  source.setAttribute('sizes', '(max-width: 730px) 570px, (min-width: 731px) 270px');
+  source.setAttribute('srcset', DBHelper.imagesWebpSrcsetForRestaurant(restaurant));
+  source.setAttribute('type', 'image/webp');
+  picture.append(source);
+
   const image = document.createElement('img');
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  div.append(image);
+  image.src = DBHelper.imageSrcForRestaurant(restaurant);
+  image.alt = `Picture of the restaurant ${restaurant.name}`;
+  image.sizes = '(max-width: 730px) 570px, (min-width: 731px) 270px';
+  image.srcset = DBHelper.imagesJpgSrcsetForRestaurant(restaurant);
+  picture.append(image);
+
+  div.append(picture);
 
   const name = document.createElement('h1');
   name.textContent = restaurant.name;

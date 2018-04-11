@@ -148,8 +148,20 @@ class DBHelper {
   /**
    * Restaurant image URL.
    */
-  static imageUrlForRestaurant(restaurant) {
-    return (`/images/${restaurant.photograph}`);
+  static imagesWebpSrcsetForRestaurant(restaurant) {
+    return (`/images/${restaurant.id}-200px.webp 200w,
+    /images/${restaurant.id}-400px.webp 400w,
+    /images/${restaurant.id}-800px.webp 800w`);
+  }
+
+  static imageSrcForRestaurant(restaurant) {
+    return (`/images/${restaurant.id}-200px.jpg`);
+  }
+
+  static imagesJpgSrcsetForRestaurant(restaurant) {
+    return (`/images/${restaurant.id}-200px.jpg 200w,
+    /images/${restaurant.id}-400px.jpg 400w,
+    /images/${restaurant.id}-800px.jpg 800w`);
   }
 
   /**
