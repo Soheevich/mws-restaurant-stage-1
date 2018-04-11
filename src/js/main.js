@@ -128,19 +128,20 @@ const createRestaurantHTML = (restaurant) => {
   div.append(image);
 
   const name = document.createElement('h1');
-  name.innerHTML = restaurant.name;
+  name.textContent = restaurant.name;
+  name.tabIndex = 0;
   div.append(name);
 
   const neighborhood = document.createElement('p');
-  neighborhood.innerHTML = restaurant.neighborhood;
+  neighborhood.textContent = restaurant.neighborhood;
   div.append(neighborhood);
 
   const address = document.createElement('p');
-  address.innerHTML = restaurant.address;
+  address.textContent = restaurant.address;
   div.append(address);
 
   const more = document.createElement('a');
-  more.innerHTML = 'View Details';
+  more.textContent = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
   div.append(more);
 

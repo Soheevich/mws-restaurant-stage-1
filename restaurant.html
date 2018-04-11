@@ -12,15 +12,16 @@
   <title>Restaurant Info</title>
 </head>
 
-<body class="inside">
+<body class="inside" tabindex="-1">
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
-    <nav>
+    <nav role="navigation">
+      <a href="#restaurant-description" class="skip" tabindex="0">Skip to main content</a>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
+    <ul id="breadcrumb" aria-label="Breadcrumb">
       <li><a href="/">Home</a></li>
     </ul>
     <!-- End breadcrumb -->
@@ -31,8 +32,8 @@
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
-    <section id="map-container">
-      <div id="map"></div>
+    <section id="map-container" aria-label="A map with restaurants locations">
+      <div id="map" role="application"></div>
     </section>
     <!-- End map -->
     <article id="restaurant-container">

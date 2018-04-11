@@ -53,9 +53,11 @@ const fetchRestaurantFromURL = (callback) => {
 const fillRestaurantHTML = (restaurantProp = restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurantProp.name;
+  name.tabIndex = 0;
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurantProp.address;
+  address.tabIndex = 0;
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
@@ -63,6 +65,7 @@ const fillRestaurantHTML = (restaurantProp = restaurant) => {
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurantProp.cuisine_type;
+  cuisine.tabIndex = 0;
 
   // fill operating hours
   if (restaurantProp.operating_hours) {
@@ -136,6 +139,7 @@ const createReviewHTML = (review) => {
 
   const comments = document.createElement('p');
   comments.textContent = review.comments;
+  comments.tabIndex = 0;
   li.appendChild(comments);
 
   return li;
