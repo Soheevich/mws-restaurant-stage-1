@@ -6,6 +6,18 @@
     top: 0;
     width: 100%;
     z-index: 1000;
+
+    @media (max-width: 750px) {
+      font-size: 1em;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 0.7em;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 0.6em;
+    }
   }
 
   #breadcrumb {

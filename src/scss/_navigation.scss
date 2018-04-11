@@ -19,6 +19,18 @@ nav {
     a {
       color: #fff;
     }
+
+    @media (max-width: 750px) {
+      font-size: 2.5em;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 2em;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 2em;
+    }
   }
 }
 
