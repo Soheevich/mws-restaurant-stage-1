@@ -3,20 +3,23 @@
 nav {
   width: 100%;
   height: 80px;
-  background-color: #252831;
-  text-align: center;
+  background-color: #084e7c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nav h1 {
-  margin: auto;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 3em;
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  margin: 0;
 }
 
 nav h1 a {
   color: #fff;
-  font-size: 14pt;
-  font-weight: 200;
-  letter-spacing: 10px;
-  text-transform: uppercase;
 }
 
 #breadcrumb {

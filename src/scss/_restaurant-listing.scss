@@ -3,56 +3,67 @@
 #restaurants-list {
   background-color: #f3f3f3;
   list-style: outside none none;
-  margin: 0;
+  margin: 0 auto;
   padding: 30px 15px 60px;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-#restaurants-list li {
+.restaurants-element {
   background-color: #fff;
   border: 2px solid #ccc;
   font-family: Arial, sans-serif;
   margin: 15px;
   min-height: 380px;
   padding: 0 30px 25px;
-  text-align: left;
   width: 270px;
-}
 
-#restaurants-list .restaurant-img {
-  background-color: #ccc;
-  display: block;
-  margin: 0;
-  max-width: 100%;
-  min-height: 248px;
-  min-width: 100%;
-}
+  .img {
+    background-color: #ccc;
+    display: block;
+    margin: 0;
+    min-height: 248px;
+  }
 
-#restaurants-list li h1 {
-  color: #f18200;
-  font-family: Arial, sans-serif;
-  font-size: 14pt;
-  font-weight: 200;
-  letter-spacing: 0;
-  line-height: 1.3;
-  margin: 20px 0 10px;
-  text-transform: uppercase;
-}
+  h1 {
+    color: #f18200;
+    font-family: Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 200;
+    letter-spacing: 0;
+    line-height: 1.3;
+    margin: 20px 0 10px;
+    text-transform: uppercase;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 11pt;
+  }
+  
+  a {
+    background-color: #3397DB;
+    color: #f0f0f0;
+    display: inline-block;
+    font-size: 10pt;
+    font-weight: 600;
+    margin: 15px 0 0 0;
+    padding: 8px 30px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.22),
+                0 1px 3px rgba(0, 0, 0, 0.16);
 
-#restaurants-list p {
-  margin: 0;
-  font-size: 11pt;
-}
+    &:hover {
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.22),
+                  0 1px 3px rgba(0, 0, 0, 0.16);
+    }
 
-#restaurants-list li a {
-  background-color: orange;
-  border-bottom: 3px solid #eee;
-  color: #fff;
-  display: inline-block;
-  font-size: 10pt;
-  margin: 15px 0 0;
-  padding: 8px 30px 10px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
+    &:active {
+      transform: translateY(+1px);
+    }
+  }
 }

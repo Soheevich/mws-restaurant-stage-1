@@ -152,9 +152,7 @@ const fillBreadcrumb = (restaurantProp = restaurant) => {
  * Get a parameter by name from page URL.
  */
 const getParameterByName = (name, url = window.location.href) => {
-  console.log('name', name);
   const newName = name.replace(/[\[\]]/g, '\\$&');
-  console.log('newName', newName);
   const regex = new RegExp(`[?&]${newName}(=([^&#]*)|&|#|$)`);
   const results = regex.exec(url);
   if (!results) {
