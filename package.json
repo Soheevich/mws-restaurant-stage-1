@@ -26,10 +26,10 @@
     "gulp-babel": "^7.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "pump": "^3.0.0"
+    "gulp-sourcemaps": "^2.6.4"
   },
   "dependencies": {
+    "browser-sync": "^2.23.6",
     "eslint": "^4.19.1",
     "merge-stream": "^1.0.1"
   }
