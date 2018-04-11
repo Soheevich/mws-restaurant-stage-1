@@ -13,6 +13,7 @@ const server = browserSync.create();
 
 
 gulp.task('copy', () => mergeStream(gulp.src('src/data/*.json').pipe(gulp.dest('build/data/'))));
+gulp.task('copy-sw', () => mergeStream(gulp.src('sw.js').pipe(gulp.dest('build/'))));
 
 gulp.task('copy-html', () =>
   mergeStream(gulp.src('*.html').pipe(gulp.dest('build/'))));
@@ -71,7 +72,7 @@ gulp.task('images', () => gulp
   .pipe(gulp.dest('build/images')));
 
 // Watch
-gulp.task('serve', ['sass', 'compress', 'copy-html', 'copy'], () => {
+gulp.task('serve', ['sass', 'compress', 'copy-html', 'copy', 'copy-sw'], () => {
   browserSync.init({
     server: './build',
   });
@@ -79,6 +80,7 @@ gulp.task('serve', ['sass', 'compress', 'copy-html', 'copy'], () => {
   gulp.watch(['src/scss/*.scss'], ['sass']);
   gulp.watch(['src/js/*.js'], ['compress']);
   gulp.watch(['*.html'], ['copy-html']);
+  gulp.watch(['sw.js'], ['copy-sw']);
   gulp.watch(['src/images/**/*', 'src/data/*.json'], ['copy']);
   gulp.watch(['build/*.html']).on('change', server.reload);
 });
