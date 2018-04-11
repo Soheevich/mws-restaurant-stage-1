@@ -23,7 +23,7 @@ gulp.task('copy-html', () =>
 gulp.task('compress', () =>
   gulp
     .src('src/js/*.js', { sourcemaps: true })
-    .pipe(babel({ presets: ['env'] }))
+    // .pipe(babel({ presets: ['env'] }))
     // .pipe(uglify({ output: { quote_style: 1 } }))
     .pipe(rename({ suffix: '-min' }))
     .pipe(gulp.dest('build/js'))
@@ -47,7 +47,7 @@ gulp.task('serve', ['sass', 'compress', 'copy-html', 'copy'], () => {
   });
 
   gulp.watch(['src/scss/*.scss'], ['sass']);
-  gulp.watch(['src/scripts/*.js'], ['compress']);
+  gulp.watch(['src/js/*.js'], ['compress']);
   gulp.watch(['*.html'], ['copy-html']);
   gulp.watch(['src/images/**/*', 'src/data/*.json'], ['copy']);
   gulp.watch(['build/*.html']).on('change', server.reload);

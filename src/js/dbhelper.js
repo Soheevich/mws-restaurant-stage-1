@@ -2,13 +2,12 @@
  * Common database helper functions.
  */
 class DBHelper {
-
   /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
    */
   static get DATABASE_URL() {
-    const port = 8000 // Change this to your server port
+    const port = 3000; // Change this to your server port
     return `http://localhost:${port}/data/restaurants.json`;
   }
 
@@ -16,12 +15,13 @@ class DBHelper {
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL);
     xhr.onload = () => {
       if (xhr.status === 200) { // Got a success response from server!
         const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
+        console.log(json);
+        const { restaurants } = json;
         callback(null, restaurants);
       } else { // Oops!. Got an error from server.
         const error = (`Request failed. Returned status of ${xhr.status}`);
@@ -150,7 +150,7 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    return (`/images/${restaurant.photograph}`);
   }
 
   /**
@@ -161,9 +161,9 @@ class DBHelper {
       position: restaurant.latlng,
       title: restaurant.name,
       url: DBHelper.urlForRestaurant(restaurant),
-      map: map,
-      animation: google.maps.Animation.DROP}
-    );
+      map,
+      animation: google.maps.Animation.DROP,
+    });
     return marker;
   }
 
