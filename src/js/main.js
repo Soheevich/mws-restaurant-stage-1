@@ -6,84 +6,61 @@ let cuisines;
 let map;
 let markers = [];
 
-/**
- * Fetch neighborhoods and cuisines as soon as the page is loaded.
- */
-document.addEventListener('DOMContentLoaded', (event) => {
-  fetchNeighborhoods();
-  fetchCuisines();
-});
 
 /**
  * Set neighborhoods HTML.
  */
-const fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
+const fillNeighborhoodsHTML = (neighborhoodsProp = neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
-  neighborhoods.forEach((neighborhood) => {
+  neighborhoodsProp.forEach((neighborhood) => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
     select.append(option);
   });
-}
+};
 
 /**
  * Fetch all neighborhoods and set their HTML.
  */
 const fetchNeighborhoods = () => {
-  DBHelper.fetchNeighborhoods((error, neighborhoods) => {
+  DBHelper.fetchNeighborhoods((error, neighborhoodsProp) => {
     if (error) { // Got an error
       console.error(error);
     } else {
-      self.neighborhoods = neighborhoods;
+      neighborhoods = neighborhoodsProp;
       fillNeighborhoodsHTML();
     }
   });
-}
+};
 
 /**
  * Fetch all cuisines and set their HTML.
  */
 const fetchCuisines = () => {
-  DBHelper.fetchCuisines((error, cuisines) => {
+  DBHelper.fetchCuisines((error, cuisinesProp) => {
     if (error) { // Got an error!
       console.error(error);
     } else {
-      self.cuisines = cuisines;
+      cuisines = cuisinesProp;
       fillCuisinesHTML();
     }
   });
-}
+};
 
 /**
  * Set cuisines HTML.
  */
-const fillCuisinesHTML = (cuisines = self.cuisines) => {
+const fillCuisinesHTML = (cuisinesProp = cuisines) => {
   const select = document.getElementById('cuisines-select');
 
-  cuisines.forEach(cuisine => {
+  cuisinesProp.forEach((cuisine) => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
     option.value = cuisine;
     select.append(option);
   });
-}
-
-/**
- * Initialize Google map, called from HTML.
- */
-window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
-  updateRestaurants();
-}
+};
 
 /**
  * Update page and map for current restaurants.
@@ -106,33 +83,49 @@ const updateRestaurants = () => {
       fillRestaurantsHTML();
     }
   })
-}
+};
+
+/**
+ * Initialize Google map, called from HTML.
+ */
+window.initMap = () => {
+  const loc = {
+    lat: 40.722216,
+    lng: -73.987501,
+  };
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: loc,
+    scrollwheel: false,
+  });
+  updateRestaurants();
+};
 
 /**
  * Clear current restaurants, their HTML and remove their map markers.
  */
-const resetRestaurants = (restaurants) => {
+const resetRestaurants = (restaurantsProp) => {
   // Remove all restaurants
-  self.restaurants = [];
+  restaurants = [];
   const ul = document.getElementById('restaurants-list');
   ul.innerHTML = '';
 
   // Remove all map markers
-  self.markers.forEach(m => m.setMap(null));
-  self.markers = [];
-  self.restaurants = restaurants;
-}
+  markers.forEach(m => m.setMap(null));
+  markers = [];
+  restaurants = restaurantsProp;
+};
 
 /**
  * Create all restaurants HTML and add them to the webpage.
  */
-const fillRestaurantsHTML = (restaurants = self.restaurants) => {
+const fillRestaurantsHTML = (restaurantsProp = restaurants) => {
   const ul = document.getElementById('restaurants-list');
-  restaurants.forEach(restaurant => {
+  restaurantsProp.forEach((restaurant) => {
     ul.append(createRestaurantHTML(restaurant));
   });
   addMarkersToMap();
-}
+};
 
 /**
  * Create restaurant HTML.
@@ -163,18 +156,26 @@ const createRestaurantHTML = (restaurant) => {
   li.append(more);
 
   return li;
-}
+};
 
 /**
  * Add markers for current restaurants to the map.
  */
-const addMarkersToMap = (restaurants = self.restaurants) => {
-  restaurants.forEach((restaurant) => {
+const addMarkersToMap = (restaurantsProp = restaurants) => {
+  restaurantsProp.forEach((restaurant) => {
     // Add marker to the map
-    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
+    const marker = DBHelper.mapMarkerForRestaurant(restaurant, map);
     google.maps.event.addListener(marker, 'click', () => {
-      window.location.href = marker.url
+      window.location.href = marker.url;
     });
-    self.markers.push(marker);
+    markers.push(marker);
   });
-}
+};
+
+/**
+ * Fetch neighborhoods and cuisines as soon as the page is loaded.
+ */
+document.addEventListener('DOMContentLoaded', (event) => {
+  fetchNeighborhoods();
+  fetchCuisines();
+});
