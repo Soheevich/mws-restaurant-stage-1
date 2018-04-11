@@ -27,16 +27,17 @@
     height: 100%;
     width: 100%;
   }
-}
-
-#restaurant-container {
-  margin-top: 131px;
-}
-
-#footer {
-  bottom: 0;
-  position: absolute;
-  width: 50%;
+  
+  #restaurant-container {
+    margin-top: 131px;
+  }
+  
+  #footer {
+    box-sizing: border-box;
+    bottom: 0;
+    position: absolute;
+    width: 50%;
+  }
 }
 
 #restaurant-name {
