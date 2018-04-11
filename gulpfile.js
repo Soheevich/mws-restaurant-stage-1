@@ -4,17 +4,15 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const rename = require('gulp-rename');
 // const uglify = require('gulp-uglify');
-const babel = require('gulp-babel');
+// const babel = require('gulp-babel');
+const responsive = require('gulp-responsive');
 const mergeStream = require('merge-stream');
 const browserSync = require('browser-sync');
 
 const server = browserSync.create();
 
 
-gulp.task('copy', () => mergeStream(
-  gulp.src('src/images/**/*').pipe(gulp.dest('build/images/')),
-  gulp.src('src/data/*.json').pipe(gulp.dest('build/data/')),
-));
+gulp.task('copy', () => mergeStream(gulp.src('src/data/*.json').pipe(gulp.dest('build/data/'))));
 
 gulp.task('copy-html', () =>
   mergeStream(gulp.src('*.html').pipe(gulp.dest('build/'))));
@@ -39,6 +37,38 @@ gulp.task('sass', () =>
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/styles'))
     .pipe(server.stream()));
+
+gulp.task('images', () => gulp
+  .src('src/images/*.{jpg,png}')
+  .pipe(responsive(
+    {
+      '*.{jpg,png}': [
+        { width: 200, rename: { suffix: '-200px' } },
+        { width: 400, rename: { suffix: '-400px' } },
+        {
+          width: 800,
+          rename: { suffix: '-800px' }, // format: 'jpeg' // format of output image is detected from new filename // format option can be omitted because // Do not enlarge the output image if the input image are already less than the required dimensions.
+          withoutEnlargement: true,
+        },
+        { width: 200, rename: { suffix: '-200px', extname: '.webp' } },
+        { width: 400, rename: { suffix: '-400px', extname: '.webp' } },
+        {
+          width: 800,
+          rename: { suffix: '-800px', extname: '.webp' }, // format: 'jpeg' // format of output image is detected from new filename // format option can be omitted because // Do not enlarge the output image if the input image are already less than the required dimensions.
+          withoutEnlargement: true,
+        },
+      ],
+    },
+    {
+      // Global configuration for all images
+      // The output quality for JPEG, WebP and TIFF output formats
+      quality: 80,
+      progressive: true,
+      withMetadata: false,
+      errorOnEnlargement: false,
+    },
+  ))
+  .pipe(gulp.dest('build/images')));
 
 // Watch
 gulp.task('serve', ['sass', 'compress', 'copy-html', 'copy'], () => {
