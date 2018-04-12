@@ -133,7 +133,7 @@ const createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.src = DBHelper.imageSrcForRestaurant(restaurant);
-  image.alt = `Picture of the restaurant ${restaurant.name}`;
+  image.alt = `The restaurant ${restaurant.name}`;
   image.sizes = '(max-width: 730px) 570px, (min-width: 731px) 270px';
   image.srcset = DBHelper.imagesJpgSrcsetForRestaurant(restaurant);
   picture.append(image);

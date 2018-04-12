@@ -70,7 +70,7 @@ const fillRestaurantHTML = (restaurantProp = restaurant) => {
 
   const image = document.createElement('img');
   image.src = DBHelper.imageSrcForRestaurant(restaurant);
-  image.alt = `Picture of the restaurant ${restaurant.name}`;
+  image.alt = `The restaurant ${restaurant.name}`;
   image.sizes = '(max-width: 750px) 700px, (min-width: 751px) 48vw';
   image.srcset = DBHelper.imagesJpgSrcsetForRestaurant(restaurant);
   picture.append(image);
