@@ -1,4 +1,8 @@
 /* CSS Document */
+* {
+  box-sizing: border-box;
+}
+
 *:focus {
   outline: 1px solid #01c4ff;
 }
@@ -74,12 +78,29 @@ section {
   display: block;
 }
 
+nav {
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
+
+  @media (max-width: 750px) {
+    width: 100%;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 
 #footer {
+  box-sizing: border-box;
   background-color: #444;
   color: #aaa;
   font-size: 8pt;
@@ -87,6 +108,11 @@ section {
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 }
 
 .skip {
