@@ -82,7 +82,7 @@ const updateRestaurants = () => {
       resetRestaurants(restaurantsProp);
       fillRestaurantsHTML();
     }
-  })
+  });
 };
 
 /**
@@ -196,17 +196,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 // register service worker
 
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('sw.js').then((reg) => {
-    if (reg.installing) {
-      console.log('Service worker installing');
-    } else if (reg.waiting) {
-      console.log('Service worker installed');
-    } else if (reg.active) {
-      console.log('Service worker active');
-    }
-  }).catch((error) => {
-    // registration failed
-    console.log(`Registration failed with ${error}`);
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, (err) => {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
   });
 }
